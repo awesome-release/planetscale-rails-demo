@@ -1,0 +1,5 @@
+<h1 class="my-3 font-bold text-lg">Create Some Fake Databases!</h1>
+<%= form_with model: @database, url: databases_path do |form| %>
+  <%= form.select :type, @faker_types %>
+  <%= form.submit "Create", class: "px-4 py-2 font-semibold text-sm bg-sky-500 text-white rounded-full shadow-sm" %>
+<% end %>

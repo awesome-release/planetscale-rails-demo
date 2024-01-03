@@ -1,0 +1,19 @@
+<h1 class="my-3 font-bold text-lg">Fake Databases Demo</h1>
+<table class="border-collapse table-fixed w-full text-sm">
+  <thead>
+    <tr>
+      <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-600 text-left">Name</th>
+      <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-600 text-left">Table Count</th>
+      <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-600 text-left">Row Count</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @databases.each do |database| %>
+    <tr>
+      <td class="border-b border-slate-100 p-4 pl-8 text-slate-500"><%= database.name %></td>
+      <td class="border-b border-slate-100 p-4 pl-8 text-slate-500"><%= database.table_count %></td>
+      <td class="border-b border-slate-100 p-4 pl-8 text-slate-500"><%= database.row_count %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

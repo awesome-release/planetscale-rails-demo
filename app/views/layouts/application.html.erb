@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PlanetscaleDemo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-gray-100">
+    <header class="px-8 py-2 flex space-x-2 bg-slate-200">
+      <a href="<%= root_path %>">PlanetScale Demo</a>
+      <div>|</div>
+      <a href="<%= databases_path %>" class="text-blue-600 visited:text-purple-600">Databases</a>
+      <div>|</div>
+      <a href="<%= new_database_path %>" class="text-blue-600 visited:text-purple-600">New Database</a>
+    </header>
+    <div class="px-8 py-2">
+      <%= yield %>
+    </div>
+  </body>
+</html>
