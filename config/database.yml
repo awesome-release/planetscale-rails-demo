@@ -16,7 +16,7 @@ default: &default
   username: <%= ENV["ENABLE_PSDB"] ? ENV.fetch("PSDB_USERNAME") : "root" %>
   password: <%= ENV["ENABLE_PSDB"] ? ENV.fetch("PSDB_PASSWORD") : nil %>
   host: <%= ENV["ENABLE_PSDB"] ? ENV.fetch("PSDB_HOST") : nil %>
-  port: <%= ENV["ENABLE_PSDB"] ? 3305 : ENV.fetch("DB_PORT") { 3306 } %>
+  port: 3306
   ssl_mode: <%= ENV["ENABLE_PSDB"] ? "verify_identity" : nil %>
   sslca: <%= ENV["ENABLE_PSDB"] ? "/etc/ssl/cert.pem" : nil %>
   socket: /tmp/mysql.sock
