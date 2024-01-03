@@ -13,14 +13,17 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
+  username: <%= ENV["ENABLE_PSDB"] ? ENV.fetch("PSDB_USERNAME") : "root" %>
+  password: <%= ENV["ENABLE_PSDB"] ? ENV.fetch("PSDB_PASSWORD") : nil %>
+  host: <%= ENV["ENABLE_PSDB"] ? ENV.fetch("PSDB_HOST") : nil %>
+  port: <%= ENV["ENABLE_PSDB"] ? 3305 : ENV.fetch("DB_PORT") { 3306 } %>
+  ssl_mode: <%= ENV["ENABLE_PSDB"] ? "verify_identity" : nil %>
+  sslca: <%= ENV["ENABLE_PSDB"] ? "/etc/ssl/cert.pem" : nil %>
   socket: /tmp/mysql.sock
 
 development:
   <<: *default
-  database: <%= ENV['ENABLE_PSDB'] ? ENV['PSDB_NAME'] : 'planetscale_demo_development' %>
-  port: <%= ENV['ENABLE_PSDB'] ? 3305 : ENV.fetch("DB_PORT", 3306) %>
+  database: <%= ENV["ENABLE_PSDB"] ? ENV["PSDB_NAME"] : "planetscale_demo_development" %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -51,8 +54,4 @@ test:
 #
 production:
   <<: *default
-  username: <%= Rails.application.credentials.planetscale&.fetch(:username) %>
-  password: <%= Rails.application.credentials.planetscale&.fetch(:password) %>
-  database: <%= Rails.application.credentials.planetscale&.fetch(:database) %>
-  host: <%= Rails.application.credentials.planetscale&.fetch(:host) %>
-  ssl_mode: verify_identity
+  database: <%= ENV["ENABLE_PSDB"] ? ENV["PSDB_NAME"] : "planetscale_demo_production" %>
