@@ -19,7 +19,7 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV['ENABLE_PSDB'] ? 'rails-demo' : 'planetscale_demo_development' %>
+  database: <%= ENV['ENABLE_PSDB'] ? ENV['PSDB_NAME'] : 'planetscale_demo_development' %>
   port: <%= ENV['ENABLE_PSDB'] ? 3305 : ENV.fetch("DB_PORT", 3306) %>
 
 # Warning: The database defined as "test" will be erased and
@@ -56,6 +56,3 @@ production:
   database: <%= Rails.application.credentials.planetscale&.fetch(:database) %>
   host: <%= Rails.application.credentials.planetscale&.fetch(:host) %>
   ssl_mode: verify_identity
-
-  #o4z29kdiw9d356s6rjsi
-  #pscale_pw_fx7wCTTUWgH7dsGXtyvqEcmgtpQBpyc0lI5XhOBtl3f
