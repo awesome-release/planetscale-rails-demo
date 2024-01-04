@@ -18,7 +18,7 @@ default: &default
   host: <%= ENV["ENABLE_PSDB"] ? ENV.fetch("PSDB_HOST") : nil %>
   port: 3306
   ssl_mode: <%= ENV["ENABLE_PSDB"] ? "verify_identity" : nil %>
-  sslca: <%= ENV["ENABLE_PSDB"] ? "/etc/ssl/cert.pem" : nil %>
+  sslca: <%= ENV["ENABLE_PSDB"] ? ENV["PSDB_CERT_PATH"] : nil %>
   socket: /tmp/mysql.sock
 
 development:
