@@ -42,3 +42,5 @@ encryption-key
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+.pscale.yml
